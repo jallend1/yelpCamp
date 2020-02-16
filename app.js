@@ -15,7 +15,7 @@ const   commentRoutes       = require('./routes/comments'),
         campgroundRoutes    = require('./routes/campground'),
         indexRoutes         = require('./routes/index');
 
-seedDB();
+// seedDB();  // Seeds the database
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
