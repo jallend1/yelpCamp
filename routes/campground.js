@@ -37,6 +37,25 @@ router.get('/:id', (req, res) => {
     });
 });
 
+// EDIT route
+router.get('/:id/edit', (req, res)=>{
+    Campground.findById(req.params.id, (err, foundCampground)=>{
+        err ? res.redirect('/campgrounds') : res.render('campgrounds/edit', {campground: foundCampground});
+    });
+});
+
+// UPDATE route
+router.put('/:id', (req, res)=>{    
+    Campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, updatedCampground)=>{
+        if(err){
+            res.redirect('/campgrounds');
+        }
+        else{
+            res.redirect(`/campgrounds/${req.params.id}`);
+        }
+    });
+});
+
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();

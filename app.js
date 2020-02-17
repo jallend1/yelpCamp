@@ -8,7 +8,8 @@ const   express         = require('express'),
         passport        = require('passport'),
         LocalStrategy   = require('passport-local'),
         expressSession  = require('express-session'),
-        User            = require('./models/user');
+        User            = require('./models/user'),
+        methodOverride  = require('method-override');
 
 // Requiring Routes
 const   commentRoutes       = require('./routes/comments'),
@@ -19,6 +20,7 @@ const   commentRoutes       = require('./routes/comments'),
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
+app.use(methodOverride('_method'));
 mongoose.connect('mongodb://localhost/yelp_camp', {useNewUrlParser: true, useUnifiedTopology: true});
 
 // Passport Config
