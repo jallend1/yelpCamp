@@ -36,6 +36,11 @@ router.post('/', isLoggedIn, (req, res) => {
     });
 });
 
+// EDIT Route
+router.get('/:commentID/edit', (req, res) =>{
+    res.send('YOU ARE HERE')
+})
+
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
