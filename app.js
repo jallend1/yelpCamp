@@ -4,25 +4,25 @@ const   express         = require('express'),
         mongoose        = require('mongoose'),
         Campground      = require('./models/campground'),
         Comment         = require('./models/comment'),
-        seedDB          = require('./seeds'),
         passport        = require('passport'),
         LocalStrategy   = require('passport-local'),
         expressSession  = require('express-session'),
         User            = require('./models/user'),
-        methodOverride  = require('method-override');
+        methodOverride  = require('method-override'),
+        flash           = require('connect-flash');
 
 // Requiring Routes
 const   commentRoutes       = require('./routes/comments'),
         campgroundRoutes    = require('./routes/campground'),
         indexRoutes         = require('./routes/index');
-
-// seedDB();  // Seeds the database
+        
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
 mongoose.connect('mongodb://localhost/yelp_camp', {useNewUrlParser: true, useUnifiedTopology: true});
-
+app.use(flash());
+        
 // Passport Config
 app.use(expressSession({
     secret: "Pern is orange!",
@@ -36,6 +36,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next)=>{
     res.locals.currentUser = req.user;
+    res.locals.message = req.flash('error');
     next();
 });
 
