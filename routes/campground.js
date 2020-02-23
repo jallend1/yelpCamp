@@ -14,13 +14,14 @@ router.get('/', (req, res) => {
 // CREATE route
 router.post('/', middleware.isLoggedIn, (req, res) => {
     const name = req.body.name;
+    const price = req.body.price;
     const image = req.body.image;
     const description = req.body.description;
     const author = {
         id: req.user._id,
         username: req.user.username
     };
-    const newCampground = {name, image, description, author};
+    const newCampground = {name, price, image, description, author};
     Campground.create(newCampground, (err, newlyCreated) => {
         err ? console.log(`Post error: ${err}`) : res.redirect('/campgrounds');
     })
