@@ -29,8 +29,9 @@ mongoose.connect('mongodb+srv://Jason:paradise1@cluster0-rqrbq.mongodb.net/test?
     }).then(()=> {
         console.log('Connected to DB!');
     }).catch(err => {
-        console.log(`Error: ${err}`);
+        console.log(`Error: ${err.message}`);
 });
+
 app.use(flash());
         
 // Passport Config
