@@ -21,7 +21,16 @@ app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
 // mongoose.connect('mongodb://localhost/yelp_camp', {useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect('mongodb+srv://Jason:paradise1@cluster0-rqrbq.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://Jason:paradise1@cluster0-rqrbq.mongodb.net/test?retryWrites=true&w=majority', 
+    {
+        useNewUrlParser: true, 
+        useUnifiedTopology: true, 
+        useCreateIndex: true
+    }).then(()=> {
+        console.log('Connected to DB!');
+    }).catch(err => {
+        console.log(`Error: ${err}`);
+});
 app.use(flash());
         
 // Passport Config
