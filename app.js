@@ -45,4 +45,4 @@ app.use(indexRoutes);
 app.use('/campgrounds', campgroundRoutes);
 app.use('/campgrounds/:id/comments', commentRoutes);
 
-app.listen('3000', () => console.log('The server is rockin!'));
+app.listen(process.env.PORT || '3000', () => console.log('The server is rockin!'));
