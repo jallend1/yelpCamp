@@ -20,8 +20,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
+
+// Local & Remote Mongoose connections 
 // mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true, useUnifiedTopology: true});
 // 'mongodb+srv://Jason:paradise1@cluster0-rqrbq.mongodb.net/test?retryWrites=true&w=majority'
+const url = process.env.DATABASEURL || 'mongodb://localhost/yelp_camp';
 mongoose.connect(process.env.DATABASEURL, 
     {
         useNewUrlParser: true, 
