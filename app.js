@@ -20,8 +20,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
-mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect('mongodb+srv://Jason:paradise1@cluster0-rqrbq.mongodb.net/test?retryWrites=true&w=majority', 
+// mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true, useUnifiedTopology: true});
+// 'mongodb+srv://Jason:paradise1@cluster0-rqrbq.mongodb.net/test?retryWrites=true&w=majority'
+mongoose.connect(process.env.DATABASEURL, 
     {
         useNewUrlParser: true, 
         useUnifiedTopology: true, 
